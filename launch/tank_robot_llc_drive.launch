@@ -1,0 +1,22 @@
+<launch>
+	<!-- Robot Motor Controller Device Location -->
+	<arg name="device_location" value="/dev/serial/by-id/usb-FTDI_TTL232R-3V3_FTAJWTLZ-if00-port0"/>
+
+	<!-- Robot Motor Controller Connection Baud Rate -->
+	<arg name="baud_rate" value="9600"/>
+
+	<!-- Max Speed -->
+	<arg name="max_speed_value" value="255"/>
+
+
+
+	<node name="tank_robot_llc_drive" pkg="tank_robot_llc_drive" 		
+			type="tank_robot_llc_drive.py" output="screen">
+
+	<param name="controller_path" value="$(arg device_location)"/>
+	<param name="baud" value="$(arg baud_rate)"/>
+	<param name="max_speed" value="$(arg max_speed_value)"/>
+
+	</node>file:///home/tank-robot/tank_robot_ws/src/tank_robot/launch/tank_robot.launch
+
+</launch>
