@@ -1,0 +1,5 @@
+tank_robot_llc_drive:
+
+    controller_path : /dev/serial/by-id/usb-FTDI_TTL232R-3V3_FTAJWTLZ-if00-port0
+    baud : 9600
+    max_speed : 255

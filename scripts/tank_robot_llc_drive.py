@@ -31,7 +31,7 @@ class cmd_velocities:
 		self.lin_x = int(vel_x * self.max_value)
 		self.rot_z = int(ang_z * self.max_value)
 
-		rospy.loginfo("Converted Commands - lin_x - " + str(self.lin_x) + " rot_z - " + str(self.rot_z))
+		#rospy.loginfo("Converted Commands - lin_x - " + str(self.lin_x) + " rot_z - " + str(self.rot_z))
 
 
 
@@ -46,7 +46,7 @@ class motor_driver_comms:
 			self.ser = serial.Serial(self.device_path, self.baud, timeout = 1)
 			
 			if self.ser.isOpen():
-				rospy.loginfo("Tank Robot Motor Controller Connected")
+				rospy.loginfo("Tank Robot Motor Controller Connect\n")
 				return 0
 		except Exception, e:
 			rospy.loginfo(str(e))
@@ -84,11 +84,11 @@ class motor_driver_comms:
 
 		command = str(str(chr(M1_dir)) + str(chr(M2_dir)) + str(chr(speed)) + str(chr(speed)))
 
-		rospy.loginfo("m1_dir - " + str(M1_dir))
-		rospy.loginfo("m2_dir - " + str(M2_dir))
-		rospy.loginfo("speed - " + str(speed))
+		#rospy.loginfo("m1_dir - " + str(M1_dir))
+		#rospy.loginfo("m2_dir - " + str(M2_dir))
+		#rospy.loginfo("speed - " + str(speed))
 
-		rospy.loginfo("Command to send - " + command)
+		#rospy.loginfo("Command to send - " + command)
 
 		return command
 
@@ -105,7 +105,7 @@ class motor_driver_comms:
 
 	def terminate():
 		self.ser.shutdown()
-		rospy.loginfo("Tank Robot Motor Controller Disconnected")
+		rospy.loginfo("Tank Robot Motor Controller Disconnected\n")
 		return 0
 
 
@@ -116,8 +116,7 @@ def callback(data,args):
 	robot_vel = args[0]
 	robot_comms = args[1]
 
-	rospy.loginfo(rospy.get_caller_id() + "lin_x - "+str(data.linear.x) + 
-		" rot_z - " + str(data.angular.z))
+	#rospy.loginfo(rospy.get_caller_id() + "lin_x - "+str(data.linear.x) + " rot_z - " + str(data.angular.z)+"\n")
 
 	robot_vel.setVelocities(data.linear.x,data.angular.z)
 
